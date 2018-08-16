@@ -1,0 +1,1 @@
+# org.gtk.Gtk3theme.Yaru
