@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="runtime">
+    <id>org.gtk.Gtk3theme.Yaru</id>
+    <metadata_license>CC-BY-SA-4.0</metadata_license>
+    <name>Yaru Gtk Theme</name>
+    <summary>Yaru theme</summary>
+    <description>
+        <p>Yaru theme</p>
+    </description>
+    <url type="homepage">https://github.com/ubuntu/yaru</url>
+</component>
