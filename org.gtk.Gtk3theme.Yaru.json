@@ -47,7 +47,7 @@
       ]
     },
     {
-      "name": "Yar",
+      "name": "Yaru",
       "buildsystem": "meson",
       "build-options": {
         "prefix": "/usr/share/runtime",
