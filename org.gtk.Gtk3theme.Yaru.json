@@ -57,7 +57,14 @@
         {
           "type": "git",
           "url": "https://github.com/ubuntu/yaru.git",
-          "commit": "38aa28793bfaf94629d562949e89719919032a94"
+          "commit": "5944aae75b448837da7032e6801848c514d9655a"
+        },
+        {
+          "type": "shell",
+          "//": "Disable building everything not used",
+          "commands": [
+            "sed -i -e \"s/subdir('icons')//\" -e \"s/subdir('sounds')//\" -e \"s/subdir('gnome-shell')//\" -e \"s/subdir('sessions')//\" meson.build"
+          ]
         }
       ]
     },
