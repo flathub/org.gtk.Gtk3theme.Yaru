@@ -57,7 +57,7 @@
         {
           "type": "git",
           "url": "https://github.com/ubuntu/yaru.git",
-          "commit": "8513153559954f3a0e9786a1f4f04619ca2c88f3"
+          "commit": "5944aae75b448837da7032e6801848c514d9655a"
         },
         {
           "type": "shell",
