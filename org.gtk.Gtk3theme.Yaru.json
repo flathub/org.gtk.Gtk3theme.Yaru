@@ -57,13 +57,24 @@
         {
           "type": "git",
           "url": "https://github.com/ubuntu/yaru.git",
-          "commit": "5944aae75b448837da7032e6801848c514d9655a"
+          "commit": "r28"
         },
         {
           "type": "shell",
           "//": "Disable building everything not used",
           "commands": [
             "sed -i -e \"s/subdir('icons')//\" -e \"s/subdir('sounds')//\" -e \"s/subdir('gnome-shell')//\" -e \"s/subdir('sessions')//\" meson.build"
+          ]
+        },
+        {
+            "type": "shell",
+            "//": "Replace gtk-3.0 folder with gtk-3.20",
+            "commands": [
+              "sed -i -e \"s/gtk-3.20/gtk-3.0/\" gtk/src/light/gtk-3.20/meson.build",
+              "cat gtk/src/light/gtk-3.20/meson.build",
+              "rm -r gtk/src/light/gtk-3.0",
+              "mv gtk/src/light/gtk-3.20 gtk/src/light/gtk-3.0",
+              "sed -i -e \"s/subdir('gtk-3.20')//\" gtk/src/light/meson.build"
           ]
         }
       ]
