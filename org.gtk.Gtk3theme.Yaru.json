@@ -68,13 +68,12 @@
         },
         {
             "type": "shell",
-            "//": "Replace gtk-3.0 folder with gtk-3.20",
+            "//": "Rename gtk-3.20 folder as gtk-3.0, and modify meson.build accordingly",
             "commands": [
+              "sed -i -e \"s/subdir('gtk-3.20')//\" gtk/src/light/meson.build",
               "sed -i -e \"s/gtk-3.20/gtk-3.0/\" gtk/src/light/gtk-3.20/meson.build",
-              "cat gtk/src/light/gtk-3.20/meson.build",
               "rm -r gtk/src/light/gtk-3.0",
-              "mv gtk/src/light/gtk-3.20 gtk/src/light/gtk-3.0",
-              "sed -i -e \"s/subdir('gtk-3.20')//\" gtk/src/light/meson.build"
+              "mv gtk/src/light/gtk-3.20 gtk/src/light/gtk-3.0"
           ]
         }
       ]
