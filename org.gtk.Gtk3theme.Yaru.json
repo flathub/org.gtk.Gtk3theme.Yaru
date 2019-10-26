@@ -57,7 +57,7 @@
         {
           "type": "git",
           "url": "https://github.com/ubuntu/yaru.git",
-          "commit": "r28"
+          "commit": "00aaee95756d26225243ff4e9531f1a56d25468b"
         },
         {
           "type": "shell",
@@ -70,10 +70,13 @@
             "type": "shell",
             "//": "Rename gtk-3.20 folder as gtk-3.0, and modify meson.build accordingly",
             "commands": [
-              "sed -i -e \"s/subdir('gtk-3.20')//\" gtk/src/light/meson.build",
-              "sed -i -e \"s/gtk-3.20/gtk-3.0/\" gtk/src/light/gtk-3.20/meson.build",
-              "rm -r gtk/src/light/gtk-3.0",
-              "mv gtk/src/light/gtk-3.20 gtk/src/light/gtk-3.0"
+              "sed -i -e \"s/subdir('dark')//\" gtk/src/meson.build",
+              "sed -i -e \"s/subdir('light')//\" gtk/src/meson.build",
+              "rm -r gtk/src/default/gtk-3.0",
+              "mv gtk/src/default/gtk-3.20 gtk/src/default/gtk-3.0",
+              "sed -i -e \"s/subdir('gtk-3.0')//\" gtk/src/default/meson.build",
+              "sed -i -e \"s/subdir('gtk-3.20')/subdir('gtk-3.0')/\" gtk/src/default/meson.build",
+              "sed -i -e \"s/gtk-3.20/gtk-3.0/\" gtk/src/default/gtk-3.0/meson.build"
           ]
         }
       ]
