@@ -51,32 +51,24 @@
       "buildsystem": "meson",
       "build-options": {
         "prefix": "/usr/share/runtime",
-        "append-path": "/usr/share/runtime/share/themes/Yaru/gtk-3.0/bin"
+        "append-path": "/usr/share/runtime/share/themes/Yaru/gtk-3.0/bin",
+        "config-opts": [ "-Dicons=false", "-Dgnome-shell=false", "-Dsounds=false", "-Dsessions=false", "-Ddark=false", "-Dlight=false"  ]
       },
       "sources": [
         {
           "type": "git",
           "url": "https://github.com/ubuntu/yaru.git",
-          "commit": "00aaee95756d26225243ff4e9531f1a56d25468b"
+          "commit": "b768e58e4e3ad4abeaebb04fd63bc5d0f2342477"
         },
         {
           "type": "shell",
-          "//": "Disable building everything not used",
+          "//": "Rename gtk-3.20 folder as gtk-3.0, and modify meson.build accordingly",
           "commands": [
-            "sed -i -e \"s/subdir('icons')//\" -e \"s/subdir('sounds')//\" -e \"s/subdir('gnome-shell')//\" -e \"s/subdir('sessions')//\" meson.build"
-          ]
-        },
-        {
-            "type": "shell",
-            "//": "Rename gtk-3.20 folder as gtk-3.0, and modify meson.build accordingly",
-            "commands": [
-              "sed -i -e \"s/subdir('dark')//\" gtk/src/meson.build",
-              "sed -i -e \"s/subdir('light')//\" gtk/src/meson.build",
-              "rm -r gtk/src/default/gtk-3.0",
-              "mv gtk/src/default/gtk-3.20 gtk/src/default/gtk-3.0",
-              "sed -i -e \"s/subdir('gtk-3.0')//\" gtk/src/default/meson.build",
-              "sed -i -e \"s/subdir('gtk-3.20')/subdir('gtk-3.0')/\" gtk/src/default/meson.build",
-              "sed -i -e \"s/gtk-3.20/gtk-3.0/\" gtk/src/default/gtk-3.0/meson.build"
+            "rm -r gtk/src/default/gtk-3.0",
+            "mv gtk/src/default/gtk-3.20 gtk/src/default/gtk-3.0",
+            "sed -i -e \"s/subdir('gtk-3.0')//\" gtk/src/default/meson.build",
+            "sed -i -e \"s/subdir('gtk-3.20')/subdir('gtk-3.0')/\" gtk/src/default/meson.build",
+            "sed -i -e \"s/gtk-3.20/gtk-3.0/\" gtk/src/default/gtk-3.0/meson.build"
           ]
         }
       ]
