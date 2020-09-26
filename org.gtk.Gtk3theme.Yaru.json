@@ -58,18 +58,16 @@
         {
           "type": "git",
           "url": "https://github.com/ubuntu/yaru.git",
-          "tag": "20.04.6",
-          "commit": "fb904587"
+          "tag": "20.10.4"
         },
         {
           "type": "shell",
-          "//": "Rename gtk-3.20 folder as gtk-3.0, and modify meson.build accordingly",
+          "//": "GNOME only wants 3.0: rename gtk-3.20 folder as gtk-3.0, and modify meson.build accordingly",
           "commands": [
             "rm -r gtk/src/default/gtk-3.0",
             "mv gtk/src/default/gtk-3.20 gtk/src/default/gtk-3.0",
-            "sed -i -e \"s/subdir('gtk-3.0')//\" gtk/src/default/meson.build",
-            "sed -i -e \"s/subdir('gtk-3.20')/subdir('gtk-3.0')/\" gtk/src/default/meson.build",
-            "sed -i -e \"s/gtk-3.20/gtk-3.0/\" gtk/src/default/gtk-3.0/meson.build"
+            "sed -i -e \"s/  '3.0,'/  '3.0'/\" gtk/src/meson.build",
+            "sed -i -e \"s/  '3.20'//\" gtk/src/meson.build"
           ]
         }
       ]
