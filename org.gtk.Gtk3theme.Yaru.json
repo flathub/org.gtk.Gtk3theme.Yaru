@@ -66,8 +66,7 @@
           "commands": [
             "rm -r gtk/src/default/gtk-3.0",
             "mv gtk/src/default/gtk-3.20 gtk/src/default/gtk-3.0",
-            "sed -i -e \"s/  '3.0,'/  '3.0'/\" gtk/src/meson.build",
-            "sed -i -e \"s/  '3.20'//\" gtk/src/meson.build"
+            "sed -i -e \"/^  '3.20',/d\" gtk/src/meson.build"
           ]
         }
       ]
