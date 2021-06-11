@@ -58,7 +58,7 @@
         {
           "type": "git",
           "url": "https://github.com/ubuntu/yaru.git",
-          "tag": "20.10.4"
+          "tag": "21.04.1"
         },
         {
           "type": "shell",
