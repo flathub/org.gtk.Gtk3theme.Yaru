@@ -58,7 +58,7 @@
         {
           "type": "git",
           "url": "https://github.com/ubuntu/yaru.git",
-          "tag": "20.10.4"
+          "tag": "21.04.1"
         },
         {
           "type": "shell",
@@ -67,7 +67,8 @@
             "rm -r gtk/src/default/gtk-3.0",
             "mv gtk/src/default/gtk-3.20 gtk/src/default/gtk-3.0",
             "sed -i -e \"s/  '3.0,'/  '3.0'/\" gtk/src/meson.build",
-            "sed -i -e \"s/  '3.20'//\" gtk/src/meson.build"
+            "sed -i -e \"s/  '3.20',//\" gtk/src/meson.build",
+            "sed -i -e \"s/  '4.0'//\" gtk/src/meson.build"
           ]
         }
       ]
