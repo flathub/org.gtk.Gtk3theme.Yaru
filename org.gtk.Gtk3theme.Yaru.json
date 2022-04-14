@@ -2,74 +2,29 @@
   "id": "org.gtk.Gtk3theme.Yaru",
   "branch": "3.22",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "21.08",
-  "sdk": "org.freedesktop.Sdk",
   "build-extension": true,
+  "sdk": "org.freedesktop.Sdk",
+  "runtime-version": "21.08",
   "appstream-compose": false,
   "separate-locales": false,
-  "build-options": {
-    "prefix": "/usr/share/runtime/share/themes/Yaru/gtk-3.0"
-  },
   "modules": [
     {
-      "name": "sassc",
-      "config-opts": ["--with-libsass=/usr/share/runtime/share/themes/Yaru/gtk-3.0"],
-      "cleanup": ["*"],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://github.com/sass/sassc/archive/3.6.2.tar.gz",
-          "sha256": "608dc9002b45a91d11ed59e352469ecc05e4f58fc1259fc9a9f5b8f0f8348a03"
-        },
-        {
-          "type": "script",
-          "dest-filename": "autogen.sh",
-          "commands": ["autoreconf -si"]
-        }
-      ],
-      "modules": [
-        {
-          "name": "libsass",
-          "cleanup": ["*"],
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/sass/libsass/archive/3.6.5.tar.gz",
-              "sha256": "89d8f2c46ae2b1b826b58ce7dde966a176bac41975b82e84ad46b01a55080582"
-            },
-            {
-              "type": "script",
-              "dest-filename": "autogen.sh",
-              "commands": ["autoreconf -si"]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "Yaru",
-      "buildsystem": "meson",
-      "build-options": {
-        "prefix": "/usr/share/runtime",
-        "append-path": "/usr/share/runtime/share/themes/Yaru/gtk-3.0/bin",
-        "config-opts": [ "-Dicons=false", "-Dgnome-shell=false", "-Dsounds=false", "-Dsessions=false", "-Ddark=false", "-Dgtksourceview=false", "-Dmetacity=false"  ]
-      },
+      "buildsystem": "simple",
+      "build-commands": [
+        "ar x yaru-gtk-theme.deb",
+        "tar -xf data.tar.zst",
+
+        "install -dm755 /usr/share/runtime/share/themes/Yaru/gtk-3.0",
+        "cp -aL usr/share/themes/Yaru/gtk-3.0/* /usr/share/runtime/share/themes/Yaru/gtk-3.0",
+        "cp -a usr/share/themes/Yaru/index.theme /usr/share/runtime/share/themes/Yaru"
+      ],
       "sources": [
         {
-          "type": "git",
-          "url": "https://github.com/ubuntu/yaru.git",
-          "tag": "21.10.2"
-        },
-        {
-          "type": "shell",
-          "//": "GNOME only wants 3.0: rename gtk-3.20 folder as gtk-3.0, and modify meson.build accordingly",
-          "commands": [
-            "rm -r gtk/src/default/gtk-3.0",
-            "mv gtk/src/default/gtk-3.20 gtk/src/default/gtk-3.0",
-            "sed -i -e \"s/  '3.0,'/  '3.0'/\" gtk/src/meson.build",
-            "sed -i -e \"s/  '3.20',//\" gtk/src/meson.build",
-            "sed -i -e \"s/  '4.0'//\" gtk/src/meson.build"
-          ]
+            "type": "file",
+            "url": "https://launchpad.net/ubuntu/+archive/primary/+files/yaru-theme-gtk_22.04.3.1_all.deb",
+            "dest-filename": "yaru-gtk-theme.deb",
+            "sha256": "92f7e63d410f3a6b79e4d3a22e8b765248273ac3760620a09fa0b81b3f141da2"
         }
       ]
     },
@@ -77,7 +32,8 @@
       "name": "appdata",
       "buildsystem": "simple",
       "build-commands": [
-        "install -Dm644 org.gtk.Gtk3theme.Yaru.appdata.xml ${FLATPAK_DEST}/share/appdata/org.gtk.Gtk3theme.Yaru.appdata.xml",
+        "mkdir -p ${FLATPAK_DEST}/share/appdata",
+        "cp org.gtk.Gtk3theme.Yaru.appdata.xml ${FLATPAK_DEST}/share/appdata",
         "appstream-compose --basename=org.gtk.Gtk3theme.Yaru --prefix=${FLATPAK_DEST} --origin=flatpak org.gtk.Gtk3theme.Yaru"
       ],
       "sources": [
@@ -86,6 +42,6 @@
           "path": "org.gtk.Gtk3theme.Yaru.appdata.xml"
         }
       ]
-    }
+  }
   ]
 }
